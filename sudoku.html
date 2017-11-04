@@ -17,7 +17,7 @@
      <canvas id="canvas" width="300px" height="300px;" style="margin: 10px"></canvas>
 
 </body>
-<script src="./src/dist/luckyDraw.min.js"></script>
+<script src="./src/dist/luckyDraw.min.js" type="text/javascript"></script>
 <script>
 
     var awardData = [
@@ -47,9 +47,6 @@
                 case 'image':
                     alert('🎉恭喜您中得：' + this.awards[index].title);
                     break;
-//                    if (index === 4)      alert('🎉恭喜您中得战争磨坊水冷机');
-//                    else if (index === 6) alert('🎉恭喜您中得魔声耳机');
-//                    break;
                 case 'losing':
                     alert('💔很遗憾，您没有中奖~');
                     break;

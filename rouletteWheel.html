@@ -3,46 +3,74 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+
+    <!--<meta name="viewport" content="width=320,maximum-scale=1.3,user-scalable=no">-->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>大转盘</title>
+
+    <style>
+        body{
+            padding: 0px;
+            margin: 0px;
+            background:url("http://www.iyoho.mobi/PubImgSour/luck/bg/bg_app_ (7).jpg") top center no-repeat #550818;
+            background-size: 100% auto;
+            /*width:320px;*/
+        }
+        .canvas{
+            margin:0 auto;
+            display: table-cell;
+            /*vertical-align: middle;*/
+            width:80%;
+        }
+        .btn a{
+            width:49%;
+            display: inline-block;
+            text-align: center;
+            color: #FDC964;
+            font-size: 1em;
+        }
+    </style>
 </head>
 
 <body>
-    <a href="https://github.com/Musiky/canvas-luckyDraw" class="fork">
-        <img style="position: absolute; top: 0; left: 0; border: 0;" src="./src/images/fork-me.png" alt="">
-    </a>
-
-    <canvas id="canvas" width="500" height="500">
+    <div style="width:100%; height:240px;"></div>
+    <canvas id="canvas"  class="canvas"  >
         Canvas not supported
     </canvas>
-</body>
+    <div class="btn">
+        <a href="javascript:;" title="活动规则">活动规则</a>
+        <a href="javascript:;" title="中奖记录">中奖记录</a>
+    </div>
+
 
 <script src="./src/dist/luckyDraw.min.js"></script>
 <script>
     var canvas = document.getElementById('canvas'),
         context = canvas.getContext('2d');
 
+    canvas.setAttribute("width", "280");
+    canvas.setAttribute("height", "280");
+
+    var awardData = [
+        {type: 'image', title:"小米手机", content: 'http://www.iyoho.mobi/PubImgSour/luck/luck_02.png'},
+        {type: 'image', title:"小米盒子", content: 'http://www.iyoho.mobi/PubImgSour/luck/luck_06.png'},
+        {type: 'image', title:"iPhone", content: 'http://www.iyoho.mobi/PubImgSour/luck/luck_07.png'},
+        {type: 'image', title:"iPad Mini", content: 'http://www.iyoho.mobi/PubImgSour/luck/luck_10.png'},
+        {type: 'losing', title:"未中奖", content: '未中奖'}
+    ];
     new RouletteWheel({
         centerX:       canvas.width / 2,
         centerY:       canvas.height / 2,
-        outsideRadius: 200,
+        outsideRadius: 130,
 
-        awards: [
-            {type: 'text', content: 'iphone8'},
-            {type: 'text', content: '大保健'},
-            {type: 'text', content: '10元话费'},
-            {type: 'image', content: 'https://img12.360buyimg.com/n7/jfs/t4807/209/1436278963/496606/8e486549/58f0884eNcec87657.jpg'},
-            {type: 'losing', content: '未中奖'}
-        ],
+        awards: awardData,
 
         finish: function (index) {
             switch(this.awards[index].type) {
                 case 'text':
-                    alert('🎉恭喜您中得：' + this.awards[index].content);
-                    break;
                 case 'image':
-                    alert('🎉恭喜您中得：战争磨坊水冷机箱');
+                    alert('🎉恭喜您中得：' + this.awards[index].title);
                     break;
                 case 'losing':
                     alert('💔很遗憾，您没有中奖~');
@@ -53,5 +81,5 @@
     }).render(canvas, context);
 
 </script>
-
+</body>
 </html>
